@@ -9,6 +9,16 @@ module.exports = function(app, passport, db) {
         res.render('index.ejs');
     });
 
+    app.get('/edit', isLoggedIn, function(req, res) {
+        db.collection('edit').find().toArray((err, result) => {
+          if (err) return console.log(err)
+          res.render('edit.ejs', {
+            user : req.user,
+            edit: result
+          })
+        })
+    });
+
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
         db.collection('contacts').find().toArray((err, result) => {
@@ -41,6 +51,19 @@ module.exports = function(app, passport, db) {
       })
     })
 
+  app.post('/updateContacts', (req, res) => {
+      db.collection('edit').save({
+      name: req.body.name, 
+      number: req.body.number,
+      email: req.body.email,
+      userId: req.body.userId
+      }, (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.redirect('/edit')
+      })
+    })
+
     app.put('/contacts', (req, res) => {
       db.collection('contacts')
       .findOneAndUpdate({
@@ -51,21 +74,6 @@ module.exports = function(app, passport, db) {
       }, {
         $set: {
           thumbUp:req.body.thumbUp + 1
-        }
-      }, {
-        sort: {_id: -1},
-        upsert: true
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-    })
-
-      app.put('/messages2', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        $set: {
-          thumbUp:req.body.thumbUp - 1
         }
       }, {
         sort: {_id: -1},

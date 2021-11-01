@@ -1,7 +1,69 @@
 body{
   padding-top:80px;
+  padding-bottom: 80px;
   word-wrap:break-word;
+  background-image: url('img/pink-bg.jpeg');
 }
 img{
   height: 200px;
+}
+.white-bg {
+  height: 450px;
+  border-radius: 50px;
+  margin: 0px 50px;
+  margin-top: 100px;
+  border: 20px solid lightgray;
+  background-color: white;
+}
+.white-bg2 {
+  border-radius: 50px;
+  border: 20px solid lightgray;
+  background-color: white;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.retroFont {
+  font-family: "Courier New", times, sans-serif;
+}
+.storeContacts {
+  margin: 50px 0px;
+  font-size: 50px;
+}
+.logInButtons {
+  background-color: chartreuse;
+  border: 7px solid lightgray;
+  padding: 7px;
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
+  margin: 0px 25px;
+}
+li {
+  text-decoration: none;
+  list-style: none;
+  padding: 0px 25px 10px 25px;
+  margin: 0;
+}
+li span, form p {
+  font-size: 20px;
+}
+.subHeaders {
+  font-size: 25px;
+}
+.hidden {
+  visibility:hidden;
+}
+.input {
+  width: 100%;
+}
+.pushDown {
+  margin-bottom: 30px;
 }

@@ -1,1 +1,2 @@
 Successfully created an app using express with login authentication that's different than savage-auth.
+As I edited this project for redirect, I had some trouble with my edit page. Still working the kinks out.

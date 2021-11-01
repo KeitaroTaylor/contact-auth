@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <title>Contact Auth</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="text-center bg-light white-bg2 clearfix pb-5">
+
+        <div class="page-header text-center">
+            <h1 class="retroFont storeContacts">Edit Contact</h1>
+            <a href="/logout" class="logInButtons">Logout</a>
+        </div>
+
+        <form>
+            <span class="d-flex justify-content-center retroFont subHeaders">Name:</span>
+            <input type="text" value="<%=edit[edit.length-1].name%>" class="input fs-3">
+            <span class="d-flex justify-content-center retroFont subHeaders">Number:</span>
+            <input type="text" value="<%=edit[edit.length-1].number%>" class="input fs-3">
+            <span class="d-flex justify-content-center retroFont subHeaders">Email:</span>
+            <input type="text" value="<%=edit[edit.length-1].email%>" class="input fs-3 pushDown">
+            <input type="text" value="<%=edit[edit.length-1].userId%>" class="hidden input fs-3 pushDown">
+
+            <span class="logInButtons"><i class="retroFont save">Save Changes</i></span>
+
+        </form>
+
+    </div>
+</div>
+</body>
+
