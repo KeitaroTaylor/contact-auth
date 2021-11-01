@@ -49,9 +49,28 @@ Array.from(edit).forEach(function(element) {
     })
 })
 
-Array.from(save).forEach(function(element) {
-    element.addEventListener('click', function() {
-      console.log(this.parentNode.parentNode.childNodes)
 
+document.querySelector('.save').addEventListener('click', function() {
+  const name = this.parentNode.parentNode.childNodes[3].value
+  const number = this.parentNode.parentNode.childNodes[7].value
+  const email = this.parentNode.parentNode.childNodes[11].value
+
+  console.log(name, number, email, newArray)
+  fetch('contacts', {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'updatedName': name,
+      'updatedNumber': number,
+      'updatedEmail': email,
+      'name': newArray[0],
+      'number': newArray[1],
+      'email': newArray[2],
+      'userId': newArray[3]
     })
+  }).then(function (response) {
+    window.location.reload()
+  })
 })

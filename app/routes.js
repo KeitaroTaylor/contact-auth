@@ -70,10 +70,12 @@ module.exports = function(app, passport, db) {
       name: req.body.name, 
       number: req.body.number,
       email: req.body.email,
-      userId: req.body.user
+      userId: req.body.userId
       }, {
         $set: {
-          thumbUp:req.body.thumbUp + 1
+          name: req.body.updatedName,
+          number: req.body.updatedNumber,
+          email: req.body.updatedEmail
         }
       }, {
         sort: {_id: -1},
