@@ -1,7 +1,7 @@
 var trash = document.getElementsByClassName("fa-trash");
 var edit = document.getElementsByClassName("fa-edit");
 var save = document.getElementsByClassName("save");
-let newArray = []
+let holdContacts = []
 
 
 
@@ -28,20 +28,20 @@ Array.from(trash).forEach(function(element) {
 
 Array.from(edit).forEach(function(element) {
     element.addEventListener('click', function() {
-        newArray[0] = this.parentNode.parentNode.childNodes[1].innerText
-        newArray[1] = this.parentNode.parentNode.childNodes[5].innerText
-        newArray[2] = this.parentNode.parentNode.childNodes[9].innerText
-        newArray[3] = this.parentNode.parentNode.childNodes[11].innerText
+        holdContacts.push(this.parentNode.parentNode.childNodes[1].innerText)
+        holdContacts.push(this.parentNode.parentNode.childNodes[5].innerText)
+        holdContacts.push(this.parentNode.parentNode.childNodes[9].innerText)
+        holdContacts.push(this.parentNode.parentNode.childNodes[11].innerText)
         fetch('updateContacts', {
           method: 'post',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'name': newArray[0],
-            'number': newArray[1],
-            'email': newArray[2],
-            'userId': newArray[3]
+            'name': holdContacts[0],
+            'number': holdContacts[1],
+            'email': holdContacts[2],
+            'userId': holdContacts[3]
           })
         }).then(function (response) {
           window.location.reload()
@@ -55,7 +55,12 @@ document.querySelector('.save').addEventListener('click', function() {
   const number = this.parentNode.parentNode.childNodes[7].value
   const email = this.parentNode.parentNode.childNodes[11].value
 
-  console.log(name, number, email, newArray)
+  const oldName = this.parentNode.parentNode.parentNode.childNodes[3].innerText
+  const oldNumber = this.parentNode.parentNode.parentNode.childNodes[5].innerText
+  const oldEmail = this.parentNode.parentNode.parentNode.childNodes[7].innerText
+  const oldUserId = this.parentNode.parentNode.parentNode.childNodes[9].innerText
+
+  console.log(name, number, email, oldName)
   fetch('contacts', {
     method: 'put',
     headers: {
@@ -65,10 +70,10 @@ document.querySelector('.save').addEventListener('click', function() {
       'updatedName': name,
       'updatedNumber': number,
       'updatedEmail': email,
-      'name': newArray[0],
-      'number': newArray[1],
-      'email': newArray[2],
-      'userId': newArray[3]
+      'name': oldName,
+      'number': oldNumber,
+      'email': oldEmail,
+      'userId': oldUserId
     })
   }).then(function (response) {
     window.location.reload()

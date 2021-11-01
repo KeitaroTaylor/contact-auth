@@ -17,7 +17,10 @@
             <a href="/logout" class="logInButtons">Logout</a>
             <a href="/profile" class="logInButtons">Back to Contacts</a>
         </div>
-
+        <data-oldName><%= edit[edit.length-1].name %></data-oldName>
+        <data-oldNumber><%= edit[edit.length-1].number %></data-oldNumber>
+        <data-oldEmail><%= edit[edit.length-1].email %></data-oldEmail>
+        <data-oldUserId><%= edit[edit.length-1].userId %></data-oldUserId>
         <form>
             <span class="d-flex justify-content-center retroFont subHeaders">Name:</span>
             <input type="text" value="<%=edit[edit.length-1].name%>" class="input fs-3">
@@ -25,9 +28,8 @@
             <input type="text" value="<%=edit[edit.length-1].number%>" class="input fs-3">
             <span class="d-flex justify-content-center retroFont subHeaders">Email:</span>
             <input type="text" value="<%=edit[edit.length-1].email%>" class="input fs-3 pushDown">
-            <input type="text" value="<%=edit[edit.length-1].userId%>" class="hidden input fs-3 pushDown">
 
-            <span class="logInButtons"><i class="retroFont save">Save Changes</i></span>
+            <span class="logInButtons"><i class="retroFont save" id="save">Save Changes</i></span>
 
         </form>
 
