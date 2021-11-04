@@ -26,42 +26,15 @@ Array.from(trash).forEach(function(element) {
       });
 });
 
-Array.from(edit).forEach(function(element) {
-    element.addEventListener('click', function() {
-        holdContacts.push(this.parentNode.parentNode.childNodes[1].innerText)
-        holdContacts.push(this.parentNode.parentNode.childNodes[5].innerText)
-        holdContacts.push(this.parentNode.parentNode.childNodes[9].innerText)
-        holdContacts.push(this.parentNode.parentNode.childNodes[11].innerText)
-        fetch('updateContacts', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            'name': holdContacts[0],
-            'number': holdContacts[1],
-            'email': holdContacts[2],
-            'userId': holdContacts[3]
-          })
-        }).then(function (response) {
-          window.location.reload()
-        })
-    })
-})
-
 
 document.querySelector('.save').addEventListener('click', function() {
-  const name = this.parentNode.parentNode.childNodes[3].value
-  const number = this.parentNode.parentNode.childNodes[7].value
-  const email = this.parentNode.parentNode.childNodes[11].value
+  const name = document.querySelector('.newName').value
+  const number = document.querySelector('.newNum').value
+  const email = document.querySelector('.newEmail').value
+  const id = document.querySelector('.contactId').innerText
 
-  const oldName = this.parentNode.parentNode.parentNode.childNodes[3].innerText
-  const oldNumber = this.parentNode.parentNode.parentNode.childNodes[5].innerText
-  const oldEmail = this.parentNode.parentNode.parentNode.childNodes[7].innerText
-  const oldUserId = this.parentNode.parentNode.parentNode.childNodes[9].innerText
-
-  console.log(name, number, email, oldName)
-  fetch('contacts', {
+  console.log(name, number, email)
+  fetch('/edit/contacts', {
     method: 'put',
     headers: {
       'Content-Type': 'application/json'
@@ -70,10 +43,8 @@ document.querySelector('.save').addEventListener('click', function() {
       'updatedName': name,
       'updatedNumber': number,
       'updatedEmail': email,
-      'name': oldName,
-      'number': oldNumber,
-      'email': oldEmail,
-      'userId': oldUserId
+      'contactId': id
+      
     })
   }).then(function (response) {
     window.location.reload()
